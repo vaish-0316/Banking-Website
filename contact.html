@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+  <style>
+    /* CSS styles for the page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      background-image: url("con.avif");
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+    }
+
+    .header {
+      background-color: #336699;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      max-height: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 80%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #336699;
+      color: #fff;
+      align-items: center;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #335588;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 20% auto;
+      padding: 20px;
+      max-width: 400px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .close-btn {
+      color: #888;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .navbar {
+      background-color: #336699;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .navbar-title {
+      font-size: 24px;
+    }
+
+    .navbar-right {
+      display: flex;
+    }
+
+    .navbar-right .button {
+      background-color: #fff;
+      color: #336699;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      margin-left: 10px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1 class="navbar-title">Contact us</h1>
+        <div class="navbar-right">
+          <a href="index.html" class="button">Home</a>
+          <a href="about.html" class="button">About</a>
+          <a href="customer.html" class="button">Transaction</a>
+          <a href="contact.html" class="button">Contact</a>
+        </div>
+      </div>
+  
+
+  <div class="container">
+    <h2>Get in Touch</h2>
+    <p>If you have any questions, feedback, or need assistance, please fill out the form below and we'll get back to you as soon as possible.</p>
+    
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" placeholder="Your email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+    <center>
+      <input type="submit" value="Submit">
+    </center>
+    </form>
+    <br>
+    <div class="confirmation" id="confirmationMessage" style="display: none;">
+        Your message has been sent. Thank you for contacting us!
+      </div>
+  
+      <script>
+        // JavaScript code to handle form submission and show confirmation message
+        document.querySelector('form').addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the form from submitting
+  
+          // Show the confirmation message
+          document.getElementById('confirmationMessage').style.display = 'block';
+        });
+
+        // Close the modal when close button is clicked
+      document.querySelector('.close-btn').addEventListener('click', function () {
+        document.getElementById('confirmationModal').style.display = 'none';
+      });
+      </script>
+    
+  </div>
+  <footer>&copy; All rights reserved.</footer>
+</body>
+</html>

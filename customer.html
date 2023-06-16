@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transaction Page</title>
+  <style>
+
+body {
+      background-image: url("tranc.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+    }
+    /* CSS styles for alert message */
+    .alert-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #a980f5;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      display: none;
+      z-index: 999;
+    }
+
+    /* CSS styles for navigation bar */
+    .navbar {
+      background-color: #336699;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .navbar-title {
+      font-size: 24px;
+    }
+
+    .navbar-right {
+      display: flex;
+    }
+
+    .navbar-right .button {
+      background-color: #fff;
+      color: #336699;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      margin-left: 10px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* CSS styles for custom section */
+    .custom-section {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .custom-section h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    /* CSS styles for table */
+    .table-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .transaction-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .transaction-table th {
+      background-color: #f2f2f2;
+    }
+
+    /* CSS styles for dialogue box */
+    .dialogue-box {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .dialogue-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* CSS styles for form */
+    .form-container {
+      margin-top: 20px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="number"],
+    .form-container input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-container .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+  <script>
+    var slNo = 1;
+
+    function openDialogueBox() {
+      document.getElementById("dialogueBox").style.display = "block";
+    }
+
+    function closeDialogueBox() {
+      document.getElementById("dialogueBox").style.display = "none";
+    }
+
+    function addTransaction(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("nameInput").value;
+      var date = document.getElementById("dateInput").value;
+      var amount = document.getElementById("amountInput").value;
+
+      var table = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+      var newRow = table.insertRow();
+
+      var slNoCell = newRow.insertCell(0);
+      var dateCell = newRow.insertCell(1);
+      var nameCell = newRow.insertCell(2);
+      var amountCell = newRow.insertCell(3);
+
+      slNoCell.innerHTML = slNo++;
+      dateCell.innerHTML = date;
+      nameCell.innerHTML = name;
+      amountCell.innerHTML = amount;
+
+      closeDialogueBox();
+      showSuccessMessage();
+      resetForm();
+    }
+
+    function showSuccessMessage() {
+      var alertMessage = document.getElementById("alertMessage");
+      alertMessage.innerHTML = "Transaction successful!";
+      alertMessage.style.display = "block";
+
+      setTimeout(function() {
+        alertMessage.style.display = "none";
+      }, 2000);
+    }
+
+    function resetForm() {
+      document.getElementById("nameInput").value = "";
+      document.getElementById("dateInput").value = "";
+      document.getElementById("amountInput").value = "";
+    }
+  </script>
+</head>
+<body>
+  <div class="alert-message" id="alertMessage"></div>
+
+  <div class="navbar">
+    <h1 class="navbar-title">Transaction Page</h1>
+    <div class="navbar-right">
+        <a href="index.html" class="button">Home</a>
+      <a href="about.html" class="button">About</a>
+      <a href="customer.html" class="button">Transaction</a>
+      <a href="contact.html" class="button">Contact</a>
+    </div>
+  </div>
+
+  <div class="custom-section">
+    <h2>Customer Transactions</h2>
+    <button class="button" onclick="openDialogueBox()">Add Transaction</button>
+  </div>
+
+  <div class="table-container">
+    <table class="transaction-table" id="transactionTable">
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table rows will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dialogue-box" id="dialogueBox">
+    <div class="dialogue-content">
+      <span class="close-button" onclick="closeDialogueBox()">&times;</span>
+      <h2>Add Transaction</h2>
+      <form onsubmit="addTransaction(event)">
+        <div class="form-container">
+          <input type="date" id="dateInput" value="" required><br>
+          <input type="text" id="nameInput" placeholder="Name" required><br>
+          <input type="number" id="amountInput" placeholder="Amount" required><br>
+          <div class="button-container">
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeDialogueBox()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>&copy; All rights reserved.</footer>
+</body>
+</html>
